@@ -8,6 +8,12 @@
 	<body>
 		<h1>Zac's Portfolio</h1>
 
+		{% load static %}
+
+		<a href="{% static 'portfolio/resume.png' %}">Resume</a>
+
+		<img src="{% static 'portfolio/stockimage.jpg' %}" />
+
 		{% for project in projects %}
 		<h1>
 			{{ project.title }}
