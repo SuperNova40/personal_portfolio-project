@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Blog</title>
-		<link
-			rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-			crossorigin="anonymous"
-		/>
-	</head>
-	<body>
-		<h1>Zac's Blog</h1>
-		<h2>Zach has written {{ blogs.count }} blog{{ blogs.count|pluralize}}</h2>
+{% extends "portfolio/base.html" %} {% load static %} {% block content %}
 
-		{% for blog in blogs %}
-		<a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
-		<h5>{{ blog.date|date:'M d Y'|upper }}</h5>
-		<p>{{ blog.description|striptags|truncatechars:100 }}</p>
-		<br />
-		{% endfor %}
-	</body>
-</html>
+<h1 id="blogtitle" class="font-weight-bold text-center">Blog</h1>
+
+<h3 class="text-center mb-5">
+	Zach has written {{ blogs.count }} blog{{ blogs.count|pluralize }}
+</h3>
+
+{% for blog in blogs %}
+<div class="row justify-content-center my-3">
+	<div class="col-md-10">
+		<a href="{% url 'blog:detail' blog.id %}">
+			<h2>{{ blog.title }}</h2>
+		</a>
+		<h5 class="text-muted">{{ blog.date|date:'M d Y'|upper }}</h5>
+		<h4>{{ blog.description|striptags|truncatechars:100 }}</h4>
+	</div>
+</div>
+{% endfor %} {% endblock %}
